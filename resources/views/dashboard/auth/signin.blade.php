@@ -30,69 +30,78 @@
 										<div class="mb-5 d-flex"> <a href=""><img src="{{URL::asset('dashboard/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1></div>
 										<div class="card-sigin">
 											<div class="main-signup-header">
+												@if ($errors->any())
+													<div class="alert alert-danger">
+														<ul>
+															@foreach ($errors->all() as $error)
+																<li>{{ $error }}</li>
+															@endforeach
+														</ul>
+													</div>
+												@endif
 												<select class="form-select" id="selectHowToLogin">
-													<option selected>Select how to login ?</option>
-													<option value="user">Login as user</option>
-													<option value="admin">Login as admin</option>
+													<option selected>{{trans('dashboard/login.select-login')}}</option>
+													<option value="user">{{trans('dashboard/login.user-login')}}</option>
+													<option value="admin">{{trans('dashboard/login.admin-login')}}</option>
 												  </select>
 												  <br>
 												  <br>
 												  <div class="login-form" id="user">	
-													<h4>Login as user</h4>
+													<h4>{{trans('dashboard/login.user-login')}}</h4>
 												  	<form method="POST" action="{{ route('login.user') }}">
 														@csrf											
 														<div class="form-group">
-															<label>Email</label> <input class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
+															<label>{{trans('dashboard/login.email')}}</label> <input class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
 															<x-input-error :messages="$errors->get('email')" class="mt-2" />
 														</div>
 														<div class="form-group">
-															<label>Password</label> <input class="form-control" placeholder="Enter your password" type="password"
+															<label>{{trans('dashboard/login.password')}}</label> <input class="form-control" placeholder="Enter your password" type="password"
 															name="password"
 															required autocomplete="current-password">
 															<x-input-error :messages="$errors->get('password')" class="mt-2" />
 														</div>
-														<button class="btn btn-main-primary btn-block">Sign In</button>
+														<button class="btn btn-main-primary btn-block">{{trans('dashboard/login.signin')}}</button>
 														<div class="row row-xs">
 															<div class="col-sm-6">
-																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
+																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> {{trans('dashboard/login.signin-facebook')}}</button>
 															</div>
 															<div class="col-sm-6 mg-t-10 mg-sm-t-0">
-																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
+																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> {{trans('dashboard/login.signin-twitter')}}</button>
 															</div>
 														</div>
 													</form>
 													<div class="main-signin-footer mt-5">
-														<p><a href="">Forgot password?</a></p>
-														<p>Don't have an account? <a href="{{ url('/' . $page='signup') }}">Create an Account</a></p>
+														<p><a href="">{{trans('dashboard/login.forget-pass')}}</a></p>
+														<p>{{trans('dashboard/login.dont-have')}} <a href="{{ url('/' . $page='signup') }}">{{trans('dashboard/login.create-account')}}</a></p>
 													</div>
 												</div>
 												<div class="login-form" id="admin">	
-													<h4>Login as admin</h4>
-												  	<form method="POST" action="{{ route('login.admin') }}">
+													<h4>{{trans('dashboard/login.admin-login')}}</h4>
+													<form method="POST" action="{{ route('login.admin') }}">
 														@csrf											
 														<div class="form-group">
-															<label>Email</label> <input class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
+															<label>{{trans('dashboard/login.email')}}</label> <input class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
 															<x-input-error :messages="$errors->get('email')" class="mt-2" />
 														</div>
 														<div class="form-group">
-															<label>Password</label> <input class="form-control" placeholder="Enter your password" type="password"
+															<label>{{trans('dashboard/login.password')}}</label> <input class="form-control" placeholder="Enter your password" type="password"
 															name="password"
 															required autocomplete="current-password">
 															<x-input-error :messages="$errors->get('password')" class="mt-2" />
 														</div>
-														<button class="btn btn-main-primary btn-block">Sign In</button>
+														<button class="btn btn-main-primary btn-block">{{trans('dashboard/login.signin')}}</button>
 														<div class="row row-xs">
 															<div class="col-sm-6">
-																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
+																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> {{trans('dashboard/login.signin-facebook')}}</button>
 															</div>
 															<div class="col-sm-6 mg-t-10 mg-sm-t-0">
-																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
+																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> {{trans('dashboard/login.signin-twitter')}}</button>
 															</div>
 														</div>
 													</form>
 													<div class="main-signin-footer mt-5">
-														<p><a href="">Forgot password?</a></p>
-														<p>Don't have an account? <a href="{{ url('/' . $page='signup') }}">Create an Account</a></p>
+														<p><a href="">{{trans('dashboard/login.forget-pass')}}</a></p>
+														<p>{{trans('dashboard/login.dont-have')}} <a href="{{ url('/' . $page='signup') }}">{{trans('dashboard/login.create-account')}}</a></p>
 													</div>
 												</div>
 											</div>
